@@ -25,10 +25,6 @@ backup: ## Backup the "mysql" volume
 build: ## Build the environment
 	docker-compose build --pull
 
-cache: ## Flush cache stored in Redis
-	docker-compose exec redis sh -c "redis-cli -n 1 FLUSHDB"
-	docker-compose exec redis sh -c "redis-cli -n 2 FLUSHDB"
-
 composer: ## Install Composer dependencies from the "php" container
 	$(PHP_SERVICE) "composer install --optimize-autoloader --prefer-dist --working-dir=/var/www/html"
 
