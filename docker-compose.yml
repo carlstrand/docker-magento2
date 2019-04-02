@@ -1,26 +1,6 @@
 version: "3.4"
 
 services:
-  blackfire:
-    image: blackfire/blackfire
-    env_file: ${PROJECT_LOCATION}/docker/local/.env
-    depends_on:
-      - php
-
-  elasticsearch:
-    build: elasticsearch
-    env_file: ${PROJECT_LOCATION}/docker/local/.env
-    volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
-
-  maildev:
-    image: djfarrelly/maildev
-    env_file: ${PROJECT_LOCATION}/docker/local/.env
-    depends_on:
-      - php
-    ports:
-      - 1080:80
-
   mysql:
     image: mysql:5.7
     env_file: ${PROJECT_LOCATION}/docker/local/.env
@@ -56,16 +36,7 @@ services:
       - ~/.ssh:/home/www-data/.ssh:ro
     tty: true
 
-  redis:
-    image: redis:3.2-alpine
-    env_file: ${PROJECT_LOCATION}/docker/local/.env
-    volumes:
-      - redis:/data
-    tty: true
-
 volumes:
   app-magento2-sync:
     external: true
-  elasticsearch: {}
   mysql: {}
-  redis: {}
